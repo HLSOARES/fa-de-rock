@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fan Page Rock</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+  body {
+    background-color: #000000;
+    color: #9b59b6;
+    font-family: 'Rock Salt', cursive, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+  /* Mascot Eddie fixed on left side */
+  #mascot {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 120px;
+    max-width: 100px;
+    height: auto;
+    z-index: 1000;
+    filter: drop-shadow(0 0 5px #7d3c98);
+    user-select: none;
+    pointer-events: none;
+  }
+  header {
+    background: #1a0a2a;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 2px solid #7d3c98;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 3em;
+    letter-spacing: 5px;
+  }
+  nav {
+    background: #2d1250;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px 0;
+  }
+  nav a {
+    color: #d6a3ff;
+    text-decoration: none;
+    font-size: 1.3em;
+    transition: color 0.3s ease;
+  }
+  nav a:hover {
+    color: #f8a5ff;
+  }
+  main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 15px 60px;
+  }
+  section {
+    margin-bottom: 50px;
+  }
+  section h2 {
+    font-size: 2em;
+    border-bottom: 2px solid #7d3c98;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+  /* Bands section */
+  #bands {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 30px;
+  }
+  .band-card {
+    background: #1a0a2a;
+    border: 2px solid #7d3c98;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 0 20px #7d3c98;
+    text-align: center;
+  }
+  .band-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 3px solid #9b59b6;
+    box-shadow: 0 0 15px #7d3c98;
+    margin-bottom: 12px;
+  }
+  .band-name {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    color: #d6a3ff;
+  }
+  audio {
+    width: 100%;
+    outline: none;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #7d3c98;
+    background-color: #2d1250;
+  }
+  /* Photos section */
+  #photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    gap: 20px;
+  }
+  #photos img {
+    width: 100%;
+    border-radius: 10px;
+    border: 3px solid #9b59b6;
+    box-shadow: 0 0 15px #7d3c98;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  #photos img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #d6a3ff;
+  }
+  /* Lyrics section */
+  #lyrics article {
+    background: #1a0a2a;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #7d3c98;
+    box-shadow: 0 0 15px #7d3c98;
+    margin-bottom: 25px;
+  }
+  #lyrics article h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #d6a3ff;
+    margin-bottom: 10px;
+  }
+  #lyrics article pre {
+    white-space: pre-wrap;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.05em;
+    line-height: 1.4em;
+  }
+  /* Fun section */
+  #fun {
+    background: #2d1250;
+    border-radius: 15px;
+    border: 3px solid #9b59b6;
+    box-shadow: 0 0 25px #d6a3ff;
+    padding: 20px;
+    text-align: center;
+  }
+  #fun button {
+    background: #9b59b6;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.2em;
+    padding: 12px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 0 10px #7d3c98;
+  }
+  #fun button:hover {
+    background: #d6a3ff;
+    color: #2d1250;
+  }
+  #fun p {
+    font-size: 1.3em;
+    margin-top: 15px;
+    min-height: 60px;
+    font-style: italic;
+  }
+  /* Voting section */
+  #voting {
+    background: #1a0a2a;
+    border: 3px solid #9b59b6;
+    border-radius: 15px;
+    box-shadow: 0 0 25px #d6a3ff;
+    padding: 25px 20px;
+    max-width: 600px;
+    margin: 0 auto 50px;
+    text-align: center;
+  }
+  #voting h2 {
+    margin-bottom: 20px;
+  }
+  #voting label {
+    font-size: 1.2em;
+    display: block;
+    margin: 12px 0 6px;
+  }
+  #voting select {
+    width: 80%;
+    font-size: 1.1em;
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid #7d3c98;
+    background-color: #2d1250;
+    color: #d6a3ff;
+    box-shadow: 0 0 10px #7d3c98 inset;
+    outline: none;
+  }
+  #voting button {
+    margin-top: 20px;
+    background: #9b59b6;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-size: 1.3em;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s ease;
+    box-shadow: 0 0 15px #7d3c98;
+  }
+  #voting button:hover {
+    background: #d6a3ff;
+    color: #2d1250;
+  }
+  #vote-message {
+    margin-top: 18px;
+    font-size: 1.2em;
+    color: #f4d6ff;
+    min-height: 2em;
+  }
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+    color: #7d3c98;
+    border-top: 2px solid #7d3c98;
+    margin-top: 40px;
+  }
+  @media (max-width: 600px){
+    nav {
+      flex-direction: column;
+      gap: 15px;
+    }
+    header h1 {
+      font-size: 2em;
+    }
+    #mascot {
+      display: none; /* hide mascot on small screens */
+    }
+    #voting select {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+<!-- Iron Maiden mascot Eddie on left side -->
+<img id="mascot" src="img/iron1.webp" alt="Eddie - Mascote do Iron Maiden" />
+
+<header>
+  <h1>Fã de Rock</h1>
+</header>
+<nav>
+  <a href="img/foto1.webp">Bandas</a>
+  <a href="#img">Fotos</a>
+  <a href="#lyrics">Letras</a>
+  <a href="#fun">Diversão</a>
+  <a href="#voting">Vote</a>
+</nav>
+<main>
+  <section id="bands">
+    <h2>Bandas</h2>
+    <div class="band-card">
+      <div class="band-name">Iron Maiden</div>
+      <img src="img/iron2.jpeg" alt="Iron Maiden Logo" />
+      </div>
+    
+    <div class="band-card">
+      <div class="band-name">Metallica</div>
+      <img src="img/metalica1.jpeg" alt="Metallica Logo" />
+          </div>
+    <div class="band-card">
+      <div class="band-name">Guns N' Roses</div>
+      <img src="img/guns.jpg" alt="Guns N' Roses Logo" />
+    </div>
+    <div class="band-card">
+      <div class="band-name">Foo Fighters</div>
+      <img src="img/bandas-de-rock-internacional-foo-fighters.jpg" alt="Foo Fighters Logo" />
+    </div>
+    <div class="band-card">
+      <div class="band-name">Nirvana</div>
+      <img src="img/nirvana.webp" alt="Nirvana Logo" />
+    </div>
+    <div class="band-card">
+      <div class="band-name">AC/DC</div>
+      <img src="img/ac dc.jpeg" alt="AC/DC Logo" />
+    </div>
+    <div class="band-card">
+      <div class="band-name">Led Zeppelin</div>
+      <img src="img/led-zeppelin.webp" alt="Led Zeppelin Logo" />
+    </div>
+    <div class="band-card">
+      <div class="band-name">Black Sabbath</div>
+      <img src="img/O-Black-Sabbath-em-sua-formacao-originalDivulgacao.jpg" alt="Black Sabbath Logo" />
+    </div>
+    <div class="band-card">
+      <div class="band-name">The Rolling Stones</div>
+      <img src="img/roling stones.jpg" alt="The Rolling Stones Logo" />
+    </div>
+    <div class="band-card">
+      <div class="band-name">Red Hot Chili Peppers</div>
+      <img src="img/RHCP_Live_in_London_26_June_2022.jpg" alt="Red Hot Chili Peppers Logo" />
+
+
+  </section>
+
+  <section id="photos">
+    <h2>Fotos</h2>
+    <img src="img/metalica2.jpeg" alt="Guitarra Rock" />
+    <img src="img/metalica1.jpeg" alt="Show de Rock" />
+    <img src="img/iron2.jpeg" alt="Banda de Rock" />
+    <img src="img/bandas-de-rock-internacional-foo-fighters.jpg" alt="">
+    <img src="img/banda1.jpg" alt="">
+    
+  </section>
+
+  <section id="lyrics">
+    <h2>Letras de Música</h2>
+    <article>
+      <h3>Fear Of The Dark - Iron Maiden</h3>
+      <pre>
+I am a man who walks alone
+And when I'm walking a dark road
+At night or strolling through the park
+When the light begins to change
+I sometimes feel a little strange
+A little anxious when it's dark
+
+Fear of the dark
+Fear of the dark
+I have a constant fear that something's always near
+Fear of the dark
+Fear of the dark
+I have a phobia that someone's always there</pre>
+    </article>
+    <article>
+      <h3>Enter Sandman - Metallica</h3>
+      <pre>
+Say your prayers, little one
+Don't forget, my son
+To include everyone
+Tuck you in, warm within
+Keep you free from sin
+Till the sandman he comes</pre>
+    </article>
+  </section>
+
+  <section id="fun">
+    <h2>Diversão</h2>
+    <p id="fun-text">Clique no botão para uma surpresa rock!</p>
+    <button id="fun-btn">Surpresa</button>
+  </section>
+
+  <section id="voting">
+    <h2>Vote na sua banda e música favoritas</h2>
+    <form id="vote-form">
+      <label for="band-select">Escolha a banda:</label>
+      <select id="band-select" required>
+        <option value="" disabled selected>Selecione uma banda</option>
+        <option value="Iron Maiden">Iron Maiden</option>
+        <option value="Guns N Roses">Guns N' Roses</option>
+        <option value="Metallica">Metallica</option>
+      </select>
+
+      <label for="song-select">Escolha a música:</label>
+      <select id="song-select" required>
+        <option value="" disabled selected>Selecione uma música</option>
+        <option value="Fear of the Dark">Fear of the Dark</option>
+        <option value="Sweet Child O' Mine">Sweet Child O' Mine</option>
+        <option value="Enter Sandman">Enter Sandman</option>
+      </select>
+
+      <button type="submit">Votar</button>
+    </form>
+    <div id="vote-message"></div>
+  </section>
+</main>
+<footer>
+  <p>© 2024 Fan Page Rock | Feito com ❤ para fãs de rock.</p>
+</footer>
+
+<script>
+  // Fun surprise quotes for #fun section
+  const funTexts = [
+    "Rock on! 🤘 Keep the spirit alive!",
+    "Turn up the volume and feel the energy!",
+    "Let the music heal your soul.",
+    "Air guitar solo time! 🎸",
+    "Rock is not just music, it's a way of life!"
+  ];
+  const funBtn = document.getElementById('fun-btn');
+  const funText = document.getElementById('fun-text');
+  funBtn.addEventListener('click', () => {
+    let idx = Math.floor(Math.random() * funTexts.length);
+    funText.textContent = funTexts[idx];
+  });
+
+  // Voting system with localStorage
+  const voteForm = document.getElementById('vote-form');
+  const voteMessage = document.getElementById('vote-message');
+
+  function loadVotes() {
+    let votes = localStorage.getItem('rockFanVotes');
+    if(votes) return JSON.parse(votes);
+    return {band: null, song: null};
+  }
+
+  function saveVotes(votes) {
+    localStorage.setItem('rockFanVotes', JSON.stringify(votes));
+  }
+
+  function showVoteMessage(message, isError = false) {
+    voteMessage.textContent = message;
+    voteMessage.style.color = isError ? '#ff4d4d' : '#d6a3ff';
+  }
+
+  // Load previous votes if any
+  const previousVotes = loadVotes();
+  if(previousVotes.band) {
+    document.getElementById('band-select').value = previousVotes.band;
+  }
+  if(previousVotes.song) {
+    document.getElementById('song-select').value = previousVotes.song;
+  }
+
+  voteForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const selectedBand = document.getElementById('band-select').value;
+    const selectedSong = document.getElementById('song-select').value;
+    if(!selectedBand || !selectedSong) {
+      showVoteMessage('Por favor, selecione uma banda e uma música.', true);
+      return;
+    }
+    saveVotes({band: selectedBand, song: selectedSong});
+    showVoteMessage(`Obrigado por votar! Você escolheu a banda "${selectedBand}" e a música "${selectedSong}".`);
+  });
+</script>
+</body>
+</html>
+
